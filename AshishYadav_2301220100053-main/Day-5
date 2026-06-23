@@ -1,0 +1,96 @@
+1. Fibonacci Number(LeetCode 509)...
+
+ class Solution {
+    public int fib(int n) {
+        if(n == 0) return 0;
+
+        else if(n == 1) return 1;
+        
+        return fib(n-1) + fib(n-2);
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+2. Climbing Stairs(LeetCode 70)...
+
+class Solution 
+{
+    public int climbStairs(int n) 
+    {
+        if(n <= 2)
+        {
+            return n ;
+        }
+        int first = 1 ; // ways to reach step 1 
+        int second = 2 ; // ways to reach step 2
+        for(int i = 3 ; i <= n ; i++)
+        {
+            int third = first + second ; // ways to reach current step 
+            first = second ;
+            second = third ;
+        }
+        return second ;
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+3. Combination Sum(LeetCode 39)...
+
+import java.util.*;
+
+public class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        backtrack(candidates, target, 0, new ArrayList<>(), result);
+        return result;
+    }
+
+    private void backtrack(int[] candidates, int target, int start, 
+                           List<Integer> current, List<List<Integer>> result) {
+        if (target == 0) {
+            result.add(new ArrayList<>(current)); // Found valid combination
+            return;
+        }
+        if (target < 0) return; // Invalid path
+
+        for (int i = start; i < candidates.length; i++) {
+            current.add(candidates[i]); // Choose candidate
+            backtrack(candidates, target - candidates[i], i, current, result); 
+            // i (not i+1) because we can reuse same element
+            current.remove(current.size() - 1); // Undo choice (backtrack)
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+4. Subsets II(LeetCode 90)...
+
+import java.util.*;
+
+public class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums); // Sort to handle duplicates
+        backtrack(nums, 0, new ArrayList<>(), result);
+        return result;
+    }
+
+    private void backtrack(int[] nums, int start, 
+                           List<Integer> current, List<List<Integer>> result) {
+        result.add(new ArrayList<>(current)); // Add current subset
+
+        for (int i = start; i < nums.length; i++) {
+            // Skip duplicates at the same recursion level
+            if (i > start && nums[i] == nums[i - 1]) continue;
+
+            current.add(nums[i]); // Choose
+            backtrack(nums, i + 1, current, result); // Explore
+            current.remove(current.size() - 1); // Undo (backtrack)
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------
