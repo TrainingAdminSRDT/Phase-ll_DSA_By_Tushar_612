@@ -1,0 +1,95 @@
+//Q1: Fibonacci Number
+class Solution {
+    public int fib(int n) {
+        
+        if (n == 0) {
+            return 0;
+        }
+
+        if (n == 1) {
+            return 1;
+        }
+
+        // Recursive relation
+        return fib(n - 1) + fib(n - 2);
+    }
+}
+
+//Q2: Climbing Stairs
+class Solution {
+    public int climbStairs(int n) {
+     return solve(  n);
+    }
+     int solve (int n){
+            if(n == 0){
+                return 1;
+            }
+            else if(n < 0){
+                return 0;
+            }
+            int sum = climbStairs(n -1) + climbStairs(n-2);
+            return sum;
+
+        }
+        
+    }
+
+//Q3: COMBINATION SUM 
+
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        options(candidates, target, 0, new ArrayList<>(), ans);
+        return ans;
+    }
+
+    private void options(int[] candidates, int target, int start,
+                           List<Integer> current,
+                           List<List<Integer>> ans) {
+
+        if (target == 0) {
+            ans.add(new ArrayList<>(current));
+            return;
+        }
+
+        if (target < 0) {
+            return;
+        }
+
+        for (int i = start; i < candidates.length; i++) {
+            current.add(candidates[i]);
+
+           options(candidates, target - candidates[i], i, current, ans);
+
+            current.remove(current.size() - 1); 
+        }
+    }
+}
+
+
+//Q4: SUBSET SUM
+
+class Solution {
+    
+    static Boolean isSubsetSum(int arr[], int sum) {
+        return options(arr, 0, sum);
+    }
+
+    static boolean options(int[] arr, int index, int target) {
+        
+        if (target == 0) {
+            return true;
+        }
+
+        if (index == arr.length) {
+            return false;
+        }
+
+        if (arr[index] <= target) {
+            if (options(arr, index + 1, target - arr[index])) {
+                return true;
+            }
+        }
+        return options(arr, index + 1, target);
+    }
+}

@@ -1,0 +1,101 @@
+//Q1: Middle of a Linked List
+
+class Solution {
+    public ListNode middleNode(ListNode head) {
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;        // move 1 step
+            fast = fast.next.next;   // move 2 steps
+        }
+
+        return slow;
+    }
+}
+___________________________________________________________________________________________________________________________________________________________________
+//Q2: Linked List Cycle
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+
+            slow = slow.next;          // move 1 step
+            fast = fast.next.next;     // move 2 steps
+
+            if (slow == fast) {
+                return true;           // cycle detected
+            }
+        }
+
+        return false;                  // no cycle
+    }
+}
+___________________________________________________________________________________________________________________________________________________________________
+//Q3: Delete a node in Linked List
+
+class Solution {
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+}
+___________________________________________________________________________________________________________________________________________________________________
+//Q4: Reverse a Linked List
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode nextTemp = curr.next; // temporarily store next node
+            curr.next = prev;              // reverse pointer
+            prev = curr;                   // move prev forward
+            curr = nextTemp;               // move curr forward
+        }
+
+        return prev; // new head of reversed list
+    }
+}
+__________________________________________________________________________________________________________________________________________________________________
+//Q5 : Palindrome of a Linked List
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+
+        if (head == null || head.next == null)
+            return true;
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        ListNode prev = null;
+        while (slow != null) {
+            ListNode next = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = next;
+        }
+
+        ListNode first = head;
+        ListNode second = prev;
+
+        while (second != null) {
+            if (first.val != second.val)
+                return false;
+
+            first = first.next;
+            second = second.next;
+        }
+
+        return true;
+    }
+}

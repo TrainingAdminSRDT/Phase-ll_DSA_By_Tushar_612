@@ -1,0 +1,252 @@
+//Q1: Search in a Rotated Sorted Array 
+class Solution {
+    public int search(int[] nums, int target) {
+        int pivot = findPivot(nums);
+
+        // If no pivot, array is not rotated
+        if (pivot == -1) {
+            return binarySearch(nums, target, 0, nums.length - 1);
+        }
+
+        // If pivot is the target
+        if (nums[pivot] == target) {
+            return pivot;
+        }
+
+        // If target is in left part
+        if (target >= nums[0]) {
+            return binarySearch(nums, target, 0, pivot - 1);
+        }
+
+        // Target is in right part
+        return binarySearch(nums, target, pivot + 1, nums.length - 1);
+    }
+
+    // Standard binary search with bounds
+    int binarySearch(int[] arr, int target, int start, int end) {
+        
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+
+            if (target < arr[mid]) {
+                end = mid - 1;
+            } else if (target > arr[mid]) {
+                start = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+    }
+
+    // Finding the pivot (i.e., largest element's index)
+    int findPivot(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+
+            // Case 1: mid is pivot
+            if (mid < end && arr[mid] > arr[mid + 1]) {
+                return mid;
+            }
+
+            // Case 2: mid-1 is pivot
+            if (mid > start && arr[mid] < arr[mid - 1]) {
+                return mid - 1;
+            }
+
+            // Case 3: left side is unsorted, move left
+            if (arr[mid] <= arr[start]) {
+                end = mid - 1;
+            } else { // Move right
+                start = mid + 1;
+            }
+        }
+
+        return -1; // No pivot found
+    }
+}
+___________________________________________________________________________________________________________________________________________________________________
+
+//Q2: Search insert position
+
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            } 
+            else if (nums[mid] < target) {
+                left = mid + 1;
+            } 
+            else {
+                right = mid - 1;
+            }
+        }
+
+        // Target not found, left is the insertion position
+        return left;
+    }
+}___________________________________________________________________________________________________________________________________________________________________
+
+//Q3: Merge Sorted Array
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1;         // Pointer for nums1
+        int j = n - 1;         // Pointer for nums2
+        int k = m + n - 1;     // Pointer for final position
+
+        // Merge from the back
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) {
+                nums1[k] = nums1[i];
+                i--;
+            } else {
+                nums1[k] = nums2[j];
+                j--;
+            }
+            k--;
+        }
+
+        // If nums2 still has elements left
+        while (j >= 0) {
+            nums1[k] = nums2[j];
+            j--;
+            k--;
+        }
+    }
+}__________________________________________________________________________________________________________________________________________________________________
+
+//Q4: Missing Number
+
+class Solution {
+    public int missingNumber(int[] nums) {
+        Arrays.sort(nums);
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != i) {
+                return i;
+            }
+        }
+
+        return nums.length;
+    }
+}_______________________________________________________________________________________________________________________________________________________________________
+
+//Q5: Subarray sums equals K
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        map.put(0, 1); // Empty prefix sum
+
+        int sum = 0;
+        int count = 0;
+
+        for (int num : nums) {
+            sum += num;
+
+            if (map.containsKey(sum - k)) {
+                count += map.get(sum - k);
+            }
+
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+        }
+
+        return count;
+
+        
+    }
+}
+______________________________________________________________________________________________________________________________________________________________________
+//Q6: Accounts Merge
+
+class Solution {
+
+    public List<List<String>> accountsMerge(List<List<String>> accounts) {
+
+        Map<String, Set<String>> graph = new HashMap<>();
+        Map<String, String> emailToName = new HashMap<>();
+
+        // Build graph
+        for (List<String> account : accounts) {
+            String name = account.get(0);
+            String firstEmail = account.get(1);
+
+            for (int i = 1; i < account.size(); i++) {
+                String email = account.get(i);
+
+                graph.putIfAbsent(email, new HashSet<>());
+                emailToName.put(email, name);
+
+                if (i > 1) {
+                    graph.get(firstEmail).add(email);
+                    graph.get(email).add(firstEmail);
+                }
+            }
+        }
+
+        Set<String> visited = new HashSet<>();
+        List<List<String>> result = new ArrayList<>();
+
+        for (String email : graph.keySet()) {
+
+            if (visited.contains(email))
+                continue;
+
+            List<String> emails = new ArrayList<>();
+            dfs(email, graph, visited, emails);
+
+            Collections.sort(emails);
+
+            List<String> account = new ArrayList<>();
+            account.add(emailToName.get(email));
+            account.addAll(emails);
+
+            result.add(account);
+        }
+
+        return result;
+    }
+
+    private void dfs(String email,
+                     Map<String, Set<String>> graph,
+                     Set<String> visited,
+                     List<String> emails) {
+
+        visited.add(email);
+        emails.add(email);
+
+        for (String neighbor : graph.get(email)) {
+            if (!visited.contains(neighbor)) {
+                dfs(neighbor, graph, visited, emails);
+            }
+        }
+    }
+}
+________________________________________________________________________________________________________________________________________________________________________
+//Q7: Check if Array is Sorted and Rotated
+
+class Solution {
+    public boolean check(int[] nums) {
+        int count = 0;
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > nums[(i + 1) % n]) {
+                count++;
+            }
+        }
+
+        return count <= 1;
+    }
+}____________________________________________________________________________________________________________________________________________________________

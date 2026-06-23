@@ -1,0 +1,133 @@
+//Q1 : Print Largest element in an array
+public class Main {
+    public static void main(String[] args) {
+            int[] arr = {1,8,10,12,14};
+            int max = 0;
+            for(int i = 0; i < arr.length; i++ ){
+                if(arr [i] > max){
+                    max = arr[i];
+
+                }
+
+            }
+        System.out.println(max);
+    }
+}
+__________________________________________________________________________________________________________________________________________________________________
+//Q2: Print SecondLargest Element in an Array
+lass Solution {
+    public static int secondLargest(int[] arr) {
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        for (int num : arr) {
+            if (num > largest) {
+                secondLargest = largest;
+                largest = num;
+            } else if (num > secondLargest && num != largest) {
+                secondLargest = num;
+            }
+        }
+
+        return secondLargest;
+    }
+}
+______________________________________________________________________________________________________________________________________________________________________
+
+Q3 : Majority Element
+class Solution {
+    public int majorityElement(int[] nums) {
+        int n = 0;  //count of element
+        int ans = 0; //element
+        // using Moorey vote approach
+        for (int i = 0; i < nums.length; i++) {
+            if (n == 0) {
+                ans = nums[i];
+            }
+
+            if (ans == nums[i]) {
+                n++;
+            } else {
+                n--;
+            }
+        }
+
+        return ans;
+    }
+}
+__________________________________________________________________________________________________________________________________________________________________
+//Q4 : TWO SUM 
+
+class Solution {
+    public int[] twoSum( int[]nums,  int target) {
+        
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for(int i = 0; i < nums.length; i++) {
+            int x = target - nums[i];
+
+            if(map.containsKey(x)) {
+                return new int[]{map.get(x), i};
+            }
+
+            map.put(nums[i], i);
+        }
+
+        return new int[]{-1, -1};
+    }
+}
+__________________________________________________________________________________________________________________________________________________________________   
+//Q5: TWO SUM II in sorted array
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int left = 0;
+        int right = numbers.length - 1;
+
+        while (left < right) {
+            int sum = numbers[left] + numbers[right];
+
+            if (sum == target) {
+                return new int[]{left + 1, right + 1};
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return new int[]{};
+    }
+}
+_____________________________________________________________________________________________________________________________________________________________________-
+//Q6: Maximum subarray sum equals k
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int currentSum = nums[0];
+        int maxSum = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        return maxSum;
+    }
+}
+____________________________________________________________________________________________________________________________________________________________________
+//Q7: CHECK if an ARRAY is Sorted and Rotated
+class Solution {
+    public boolean check(int[] nums) {
+        int count = 0;
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > nums[(i + 1) % n]) {
+                count++;
+            }
+        }
+
+        return count <= 1;
+    }
+}
+
+ __________________________________________________________________________________________________________________________________________________________________-   
