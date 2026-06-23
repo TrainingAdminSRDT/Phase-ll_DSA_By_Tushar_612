@@ -1,0 +1,129 @@
+-->>Remove nth node end of the list
+
+
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+
+
+        for (int i = 0; i <= n; i++) {
+            fast = fast.next;
+        }
+
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+ 
+        slow.next = slow.next.next;
+
+        return dummy.next;
+    }
+}
+
+-->>Merge two sorted list
+
+class Solution {
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+
+        ListNode dummy = new ListNode(0);
+
+        ListNode current = dummy;
+
+        while (list1 != null && list2 != null) {
+
+            if (list1.val <= list2.val) {
+
+                current.next = list1;
+
+                list1 = list1.next;
+
+            } else {
+
+                current.next = list2;
+
+                list2 = list2.next;
+
+            }
+
+            current = current.next;
+        }
+
+        if (list1 != null) {
+            current.next = list1;
+        }
+
+        if (list2 != null) {
+            current.next = list2;
+        }
+
+        return dummy.next;
+    }
+}
+
+-->>MERGE K SORTED LISTS
+
+class Solution {
+
+    public ListNode mergeKLists(ListNode[] lists) {
+
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+
+        ListNode result = lists[0];
+
+        for (int i = 1; i < lists.length; i++) {
+
+            result = merge(result, lists[i]);
+
+        }
+
+        return result;
+    }
+
+    public ListNode merge(ListNode a, ListNode b) {
+
+        ListNode dummy = new ListNode(0);
+
+        ListNode current = dummy;
+
+        while (a != null && b != null) {
+
+            if (a.val <= b.val) {
+
+                current.next = a;
+
+                a = a.next;
+
+            } else {
+
+                current.next = b;
+
+                b = b.next;
+
+            }
+
+            current = current.next;
+        }
+
+        if (a != null) {
+            current.next = a;
+        }
+
+        if (b != null) {
+            current.next = b;
+        }
+
+        return dummy.next;
+    }
+}
+
+

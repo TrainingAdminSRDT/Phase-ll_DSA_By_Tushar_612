@@ -1,0 +1,233 @@
+-->> Binary search
+
+class Solution {
+
+    public int search(int[] nums, int target) {
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+
+            int mid = (left + right) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            else if (target < nums[mid]) {
+                right = mid - 1;
+            }
+
+            else {
+                left = mid + 1;
+            }
+        }
+
+        return -1;
+    }
+}
+
+-->> SEARCH INSERT POSITION 
+
+class Solution {
+
+    public int searchInsert(int[] nums, int target) {
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+
+            int mid = (left + right) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            else if (target < nums[mid]) {
+                right = mid - 1;
+            }
+
+            else {
+                left = mid + 1;
+            }
+        }
+
+        return left;
+    }
+}
+
+-->> LONGEST PALIDRONIC SUBSTRING
+
+class Solution {
+
+    public String longestPalindrome(String s) {
+
+        if (s == null || s.length() < 2) {
+            return s;
+        }
+
+        int start = 0;
+        int maxLength = 1;
+
+        for (int i = 0; i < s.length(); i++) {
+
+            int left = i;
+            int right = i;
+
+            while (left >= 0 && right < s.length()
+                    && s.charAt(left) == s.charAt(right)) {
+
+                if (right - left + 1 > maxLength) {
+                    maxLength = right - left + 1;
+                    start = left;
+                }
+
+                left--;
+                right++;
+            }
+
+            left = i;
+            right = i + 1;
+
+            while (left >= 0 && right < s.length()
+                    && s.charAt(left) == s.charAt(right)) {
+
+                if (right - left + 1 > maxLength) {
+                    maxLength = right - left + 1;
+                    start = left;
+                }
+
+                left--;
+                right++;
+            }
+        }
+
+        return s.substring(start, start + maxLength);
+    }
+}
+
+-->> Longest Substring Without Repeating Characters
+
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+HashSet<Character> set = new HashSet<>();
+ int left = 0;
+int maxLength = 0;
+for (int right = 0; right < s.length(); right++) {
+ while (set.contains(s.charAt(right))) {
+set.remove(s.charAt(left));
+left++;
+            }
+            set.add(s.charAt(right));
+
+            maxLength = Math.max(maxLength, right - left + 1);
+        }
+
+        return maxLength;
+    }
+}
+
+
+-->> SEARCH INN ROTATED SORTED ARRAY
+
+class Solution {
+
+    public int search(int[] nums, int target) {
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+
+            int mid = (left + right) / 2;
+
+            // Target mil gaya
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            // Left half sorted hai
+            if (nums[left] <= nums[mid]) {
+
+                if (target >= nums[left] && target < nums[mid]) {
+
+                    right = mid - 1;
+
+                } else {
+
+                    left = mid + 1;
+                }
+
+            }
+
+            // Right half sorted hai
+            else {
+
+                if (target > nums[mid] && target <= nums[right]) {
+
+                    left = mid + 1;
+
+                } else {
+
+                    right = mid - 1;
+                }
+            }
+        }
+
+        return -1;
+    }
+}
+
+-->> MISSING NUMBER 
+
+class Solution {
+
+    public int missingNumber(int[] nums) {
+
+        int n = nums.length;
+
+        int expectedSum = n * (n + 1) / 2;
+
+        int actualSum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+
+            actualSum = actualSum + nums[i];
+        }
+
+        return expectedSum - actualSum;
+    }
+}
+
+-->>  merge sort array
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+   
+        int p1 = m - 1;     
+        int p2 = n - 1;      
+        int p = m + n - 1;   
+
+        while (p1 >= 0 && p2 >= 0) {
+            if (nums1[p1] > nums2[p2]) {
+                nums1[p] = nums1[p1];
+                p1--;
+            } else {
+                nums1[p] = nums2[p2];
+                p2--;
+            }
+            p--;
+        }
+
+        while (p2 >= 0) {
+            nums1[p] = nums2[p2];
+            p2--;
+            p--;
+        }
+    }
+}
+
+

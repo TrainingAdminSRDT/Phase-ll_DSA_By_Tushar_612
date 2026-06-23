@@ -1,0 +1,69 @@
+-->>PALINDROME NUMBER
+
+class Solution {
+    public boolean isPalindrome(int x) {
+ 
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+        int reversedHalf = 0;
+
+        while (x > reversedHalf) {
+            reversedHalf = reversedHalf * 10 + x % 10;
+            x /= 10;
+        }
+        return x == reversedHalf || x == reversedHalf / 10;
+    }
+}
+
+-->>REVERSE INTEGER
+
+class Solution {
+    public int reverse(int x) {
+       int rev = 0;
+
+        while (x != 0) {
+
+            int digit = x % 10;
+
+            if (rev > Integer.MAX_VALUE / 10 ||
+                rev < Integer.MIN_VALUE / 10) {
+                return 0;
+            }
+
+            rev = rev * 10 + digit;
+
+            x = x / 10;
+        }
+
+        return rev; 
+    }
+}
+
+-->>TAKING INPUT AND PRINT THE ARRAY 
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        int[] myArray = new int[n];
+
+        System.out.println("Enter " + n + " numbers:");
+        for (int i = 0; i < n; i++) {
+            System.out.print("Element " + (i + 1) + ": ");
+            myArray[i] = scanner.nextInt();
+        }
+
+        System.out.println("\nThe values in the array are:");
+        for (int num : myArray) {
+            System.out.print(num + " ");
+        }
+        scanner.close();
+    }
+}
+

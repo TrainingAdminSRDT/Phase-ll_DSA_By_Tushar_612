@@ -1,0 +1,389 @@
+-->>QUESTION TWO SUM
+
+class Solution {
+
+    public int[] twoSum(int[] nums, int target) {
+
+        for(int i = 0; i < nums.length; i++) {
+
+            for(int j = i + 1; j < nums.length; j++) {
+
+                if(nums[i] + nums[j] == target) {
+
+                    return new int[]{i, j};
+                }
+            }
+        }
+
+        return new int[]{};
+
+-->>ADD TWO NUMBERS
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+        ListNode dummy = new ListNode(0);
+
+        ListNode current = dummy;
+
+        int carry = 0;
+
+        while (l1 != null || l2 != null || carry != 0) {
+
+            int x = (l1 != null) ? l1.val : 0;
+
+            int y = (l2 != null) ? l2.val : 0;
+
+            int sum = x + y + carry;
+
+            carry = sum / 10;
+
+            current.next = new ListNode(sum % 10);
+
+            current = current.next;
+
+            if (l1 != null)
+                l1 = l1.next;
+
+            if (l2 != null)
+                l2 = l2.next;
+        }
+
+        return dummy.next;
+    }
+}
+
+-->>PALINDROME NUMBER
+
+class Solution {
+    public boolean isPalindrome(int x) {
+ 
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+        int reversedHalf = 0;
+
+        while (x > reversedHalf) {
+            reversedHalf = reversedHalf * 10 + x % 10;
+            x /= 10;
+        }
+        return x == reversedHalf || x == reversedHalf / 10;
+    }
+}
+
+-->>REVERSE INTEGER
+
+class Solution {
+    public int reverse(int x) {
+       int rev = 0;
+
+        while (x != 0) {
+
+            int digit = x % 10;
+
+            if (rev > Integer.MAX_VALUE / 10 ||
+                rev < Integer.MIN_VALUE / 10) {
+                return 0;
+            }
+
+            rev = rev * 10 + digit;
+
+            x = x / 10;
+        }
+
+        return rev; 
+    }
+}
+
+-->>TAKING INPUT AND PRINT THE ARRAY 
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        int[] myArray = new int[n];
+
+        System.out.println("Enter " + n + " numbers:");
+        for (int i = 0; i < n; i++) {
+            System.out.print("Element " + (i + 1) + ": ");
+            myArray[i] = scanner.nextInt();
+        }
+
+        System.out.println("\nThe values in the array are:");
+        for (int num : myArray) {
+            System.out.print(num + " ");
+        }
+        scanner.close();
+    }
+}
+
+->>CALCULATE AND SUM OF AN ARRAY 
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+    
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        int[] myArray = new int[n];
+
+    
+        System.out.println("Enter " + n + " numbers:");
+        for (int i = 0; i < n; i++) {
+            System.out.print("Element " + (i + 1) + ": ");
+            myArray[i] = scanner.nextInt();
+        }
+
+       ]
+        int sum = 0;
+        for (int num : myArray) {
+            sum += num; 
+        }
+  System.out.println("\nThe sum of all elements is: " + sum);
+
+        scanner.close();
+    }
+}
+
+-->> Sort color
+
+class Solution {
+    public void sortColors(int[] nums) {
+
+        int low = 0;
+        int mid = 0;
+        int high = nums.length - 1;
+
+        while (mid <= high) {
+
+            if (nums[mid] == 0) {
+
+                int temp = nums[low];
+                nums[low] = nums[mid];
+                nums[mid] = temp;
+
+                low++;
+                mid++;
+            }
+
+            else if (nums[mid] == 1) {
+
+                mid++;
+            }
+
+            else {
+
+                int temp = nums[mid];
+                nums[mid] = nums[high];
+                nums[high] = temp;
+
+                high--;
+            }
+        }
+    }
+}
+
+-->> Binary search
+
+class Solution {
+
+    public int search(int[] nums, int target) {
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+
+            int mid = (left + right) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            else if (target < nums[mid]) {
+                right = mid - 1;
+            }
+
+            else {
+                left = mid + 1;
+            }
+        }
+
+        return -1;
+    }
+}
+
+-->> SEARCH INSERT POSITION 
+
+class Solution {
+
+    public int searchInsert(int[] nums, int target) {
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+
+            int mid = (left + right) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            else if (target < nums[mid]) {
+                right = mid - 1;
+            }
+
+            else {
+                left = mid + 1;
+            }
+        }
+
+        return left;
+    }
+}
+
+-->> LONGEST PALIDRONIC SUBSTRING
+
+class Solution {
+
+    public String longestPalindrome(String s) {
+
+        if (s == null || s.length() < 2) {
+            return s;
+        }
+
+        int start = 0;
+        int maxLength = 1;
+
+        for (int i = 0; i < s.length(); i++) {
+
+            int left = i;
+            int right = i;
+
+            while (left >= 0 && right < s.length()
+                    && s.charAt(left) == s.charAt(right)) {
+
+                if (right - left + 1 > maxLength) {
+                    maxLength = right - left + 1;
+                    start = left;
+                }
+
+                left--;
+                right++;
+            }
+
+            left = i;
+            right = i + 1;
+
+            while (left >= 0 && right < s.length()
+                    && s.charAt(left) == s.charAt(right)) {
+
+                if (right - left + 1 > maxLength) {
+                    maxLength = right - left + 1;
+                    start = left;
+                }
+
+                left--;
+                right++;
+            }
+        }
+
+        return s.substring(start, start + maxLength);
+    }
+}
+
+-->> Longest Substring Without Repeating Characters
+
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+HashSet<Character> set = new HashSet<>();
+ int left = 0;
+int maxLength = 0;
+for (int right = 0; right < s.length(); right++) {
+ while (set.contains(s.charAt(right))) {
+set.remove(s.charAt(left));
+left++;
+            }
+            set.add(s.charAt(right));
+
+            maxLength = Math.max(maxLength, right - left + 1);
+        }
+
+        return maxLength;
+    }
+}
+
+
+-->> SEARCH INN ROTATED SORTED ARRAY
+
+class Solution {
+
+    public int search(int[] nums, int target) {
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+
+            int mid = (left + right) / 2;
+
+            // Target mil gaya
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            // Left half sorted hai
+            if (nums[left] <= nums[mid]) {
+
+                if (target >= nums[left] && target < nums[mid]) {
+
+                    right = mid - 1;
+
+                } else {
+
+                    left = mid + 1;
+                }
+
+            }
+
+            // Right half sorted hai
+            else {
+
+                if (target > nums[mid] && target <= nums[right]) {
+
+                    left = mid + 1;
+
+                } else {
+
+                    right = mid - 1;
+                }
+            }
+        }
+
+        return -1;
+    }
+}
+
+
