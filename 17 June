@@ -1,0 +1,147 @@
+ 1. Palindrome Number [LeetCode-9]->
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        int temp=x;
+        int rev=0;
+        while(temp>0)
+        {
+            int d=temp%10;
+            rev=(rev*10)+d;
+            temp=temp/10;
+        }
+        if(x<0)
+        {
+            return false;
+        }
+        else if(rev == x)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+===============================================
+
+2. String Palindrome [GeeksForGeeks]
+
+class Solution {
+    public static boolean isPalindrome(String s) {
+        // code here
+        s=s.toLowerCase();
+        int left=0;
+        int right=s.length()-1;
+        while(left<right)
+        {
+            if(s.charAt(left) != s.charAt(right))
+            {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+        
+    }
+}
+
+===============================================
+
+3. Minimum Number of steps->
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int d=sc.nextInt();
+        int steps=0;
+        steps=d/5;
+        if(d%5==0)
+        {
+            System.out.println(steps);
+        }
+        else
+        {
+            System.out.println(steps+1);
+        }
+    }
+}
+
+===============================================
+
+4. Find the winner between A and B->
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the number:");
+        int n=sc.nextInt();
+        if(n%3==0)
+        {
+            System.out.println("Winner:B");
+        }
+        else
+        {
+            System.out.println("Winner:A");
+        }
+    }
+}
+
+===============================================
+
+5. Input values in an array and print the array->
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+
+        System.out.println("enter size of an array:");
+        int s=sc.nextInt();
+        int arr[]=new int[s];
+        System.out.println("enter elements in an array:");
+        for(int i=0;i<s;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        for(int i=0;i<s;i++)
+        {
+            System.out.println(arr[i]);
+        }
+        
+    }
+}
+
+=============================================
+
+6. Write a program to Calculate Sum and Average of an array->
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int sum=0;
+        System.out.println("enter size of an array:");
+        int s=sc.nextInt();
+        int arr[]=new int[s];
+        System.out.println("enter elements in an array:");
+        for(int i=0;i<s;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        for(int i=0;i<s;i++)
+        {
+            sum=sum+arr[i];
+        }
+        System.out.println("Sum:"+sum);
+        System.out.println("Average:"+sum/s);
+        
+    }
+}
+
+===============================================
