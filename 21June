@@ -1,0 +1,101 @@
+## QUES LEETCODE 876
+
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast!=null&&fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+        
+
+        
+
+    }
+}
+_________________________________________________________________________________________________________________________________________________________________
+## QUES LEETCODE 141 
+
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if(head==null||head.next==null) return false;
+        ListNode slow=head;
+        ListNode fast=head;
+         while(fast!=null&&fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast)
+            return true;
+         }
+         return false;
+         
+    }
+}
+______________________________________________________________________________________________________________________________________________________________
+## QUES LEETCODE 237 
+
+class Solution {
+    public void deleteNode(ListNode node) {
+        
+        node.val=node.next.val;
+        node.next=node.next.next;
+        
+    }
+}
+_____________________________________________________________________________________________________________________________________________________________
+## QUES LEETCODE 206 
+class Solution {
+    public ListNode reverseList(ListNode head) {
+    ListNode temp=head;
+    ListNode prev=null;
+    while(temp!=null){
+        ListNode front=temp.next;  // storing next element so we dont lose it
+        temp.next=prev;   
+        prev=temp;
+        temp=front;
+        
+    }
+    return prev;
+        
+    }
+}
+_____________________________________________________________________________________________________________________________________________________________
+## QUES LEETCODE 234
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode fast=head;
+        ListNode slow=head;
+        while(fast.next!=null&& fast.next.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        ListNode newHead=reverse(slow.next);
+        ListNode first=head;ListNode second=newHead;
+        while(second!=null){
+            if(first.val!=second.val){
+                reverse(newHead);
+            return false;
+            }
+        first=first.next;
+        second=second.next;
+        
+        }
+        reverse(newHead);
+
+        return true;
+    }
+    ListNode reverse(ListNode head){
+        ListNode temp=head;
+        ListNode prev=null;
+        while(temp!=null){
+            ListNode front=temp.next;
+            temp.next=prev;
+            prev=temp;
+            temp=front;
+        }
+        return prev;
+    }
+}
