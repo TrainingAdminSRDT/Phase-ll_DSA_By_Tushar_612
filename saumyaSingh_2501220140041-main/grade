@@ -1,0 +1,26 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+import java.util.Scanner;
+
+public class Grade {
+   public Grade() {
+   }
+
+   public static void main(String[] var0) {
+      Scanner var1 = new Scanner(System.in);
+      System.out.print("Enter marks: ");
+      int var2 = var1.nextInt();
+      if (var2 >= 96) {
+         System.out.println("Grade: O");
+      } else if (var2 >= 88) {
+         System.out.println("Grade: A+");
+      } else if (var2 >= 81) {
+         System.out.println("Grade: A");
+      } else if (var2 >= 76) {
+         System.out.println("Grade: B+");
+      } else {
+         System.out.println("Grade: B");
+      }
+
+      var1.close();
+   }
+}

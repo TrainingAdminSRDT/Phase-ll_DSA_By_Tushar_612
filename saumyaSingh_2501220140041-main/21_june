@@ -1,0 +1,127 @@
+............................leetcode 138 ...................................
+
+
+
+class Solution {
+    public Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
+        }
+
+        Map<Node, Node> map = new HashMap<>();
+
+        // Create all copied nodes
+        Node curr = head;
+        while (curr != null) {
+            map.put(curr, new Node(curr.val));
+            curr = curr.next;
+        }
+
+        // Connect next and random pointers
+        curr = head;
+        while (curr != null) {
+            Node copy = map.get(curr);
+
+            copy.next = map.get(curr.next);
+            copy.random = map.get(curr.random);
+
+            curr = curr.next;
+        }
+
+        return map.get(head);
+    }
+}
+
+..................................leetcode 141........................................
+
+
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+......................................leetcode 206 .................................................
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode next = curr.next; // save next node
+
+            curr.next = prev;          // reverse link
+
+            prev = curr;               // move prev
+            curr = next;               // move curr
+        }
+
+        return prev;
+    }
+}
+
+
+..................................leetcode 237.........................................
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+}
+
+......................................leetcode 876 ............................................
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+}
+
+
+
+
+
+
+
