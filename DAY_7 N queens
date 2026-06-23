@@ -1,0 +1,59 @@
+class Solution {
+    static boolean[] cols;
+    static boolean[] left_diag;
+    static boolean[] right_diag;
+    public static List<List<String>> solveNQueens(int n) {
+        cols = new boolean[n];
+        left_diag = new boolean[2*n-1];
+        right_diag = new boolean[2*n-1];
+
+        var board = createBoard(n);
+
+        List<List<String>> ans = new ArrayList<>();
+        helper(board, 0, ans);
+        return ans;
+    }
+
+    private static void helper(char[][] board, int r, List<List<String>> ans){
+        if(r >= board.length){
+            List<String> t = new ArrayList<>();
+            for (char[] chars : board) t.add(new String(chars));
+            ans.add(t);
+            return;
+        }
+
+        for(int c=0; c < board.length; c++){
+            // check if we can place queen at r,c
+            int diag1 = r - c + board.length - 1;
+            int diag2 = r + c;
+
+            if(cols[c] || left_diag[diag1] || right_diag[diag2])
+                continue;
+
+            // place queen at r,c
+            board[r][c] = 'Q';
+            // mark the col and diags as true to indicate a queen has already been placed.
+            cols[c] = true;
+            left_diag[diag1] = true;
+            right_diag[diag2] = true;
+
+            helper(board, r+1, ans);
+
+            // undo changes
+            board[r][c] = '.';
+            cols[c] = false;
+            left_diag[diag1] = false;
+            right_diag[diag2] = false;
+        }
+    }
+    private static char[][] createBoard(int n){
+        char[][] board = new char[n][n];
+        for(int i=0; i < n; i++) {
+            char[] row = new char[n];
+            Arrays.fill(row, '.');
+            board[i] = row;
+        }
+        return board;
+    }
+
+}
