@@ -1,0 +1,198 @@
+QUESTION 1)
+Sort Colors(LeetCode 75)... 
+class Solution {
+    public void sortColors(int[] nums) {
+      int largest = Integer.MIN_VALUE;
+        for(int i =0; i< nums.length; i++){
+            largest = Math.max(largest,nums[i]);
+            }
+            int count [] = new int[largest+1];
+            for(int i = 0 ; i < nums.length; i++)
+            {
+                count[nums[i]]++;
+
+            }
+            int j = 0;
+            for( int i=0; i<count.length; i++){
+                while(count[i] > 0){
+                    nums[j] = i;
+                    j++;
+                    count[i]--;
+                }
+            }
+        }
+    }
+
+    
+    ----------------------------------------------------------------------------------------
+ QUESTION 2) BINARY SEARCH
+
+    class Solution {
+    public int search(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length-1;
+        int mid=0;
+        while(left<=right){
+            mid = left+(right-left)/2;
+            if(target == nums[mid]){
+                return mid;
+            }
+            else if(nums[mid]<target){
+               left = mid+1;
+            }
+            else{
+                right = mid-1;
+            }
+        }  
+        return -1;      
+    }
+}
+
+---------------------------------------------------------------------------------------------------------
+
+QUESTION 3) Search Insert Position(LeetCode 35)
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+      int left = 0;
+      int right = nums.length-1;
+      int mid = 0;
+      while(left<=right){
+        mid = left+ (right-left)/2;
+        if(nums[mid]== target){
+            return mid;
+            }
+            else if(nums[mid]<=target){
+              left = mid+1;
+            }
+            else{
+                right = mid-1;
+            }
+        }
+      
+      return left;
+    }
+}
+
+
+-----------------------------------------------------------------------------------------------------------
+
+QUESTION 4)
+Search in Rotated Sorted Array(LeetCode 33)
+
+class Solution {
+    public int search(int[] nums, int target) {
+      int min= minsearch(nums);
+        if(nums[min] <= target && target <= nums[nums.length-1])
+           return search(nums,min, nums.length-1,target);
+        
+        else
+        return search(nums,0,min,target);
+    }
+    public static int search(int nums[],int left,int right,int target){
+      int l = left;
+      int r = right;
+      while (l <= r){
+        int m = l+ (r - l)/2;
+        if( nums[m] == target){
+            return m;
+        }
+        else if(nums[m] > target){
+            r = m-1;
+        }
+        else {
+            l = m+1;
+        }
+      }
+      return -1;
+    }
+    public static int minsearch(int nums[]){
+        int left=0;
+        int right=nums.length-1;
+        while(left < right){
+            int mid = left + ( right - left ) / 2;
+            if(mid > 0 && nums[mid-1] >nums[mid]  ){
+            return mid;}
+            else if(nums[left] <= nums[mid] && nums[mid] > nums[right]){
+              left = mid+1;}
+              else{
+                right=mid-1;
+              }
+        }
+        return left;
+    }
+
+
+}
+---------------------------------------------------------------------------------------------------------------------------
+
+QUETSION 5) Missing Number(LeetCode 268)
+
+class Solution {
+    public int missingNumber(int[] nums)
+    { int n = nums.length;
+    int sum=0;
+        for(int i = 0; i<nums.length; i++){
+            sum+=nums[i];
+        }
+        int Actual = n*(n+1)/2;
+        return Actual-sum;
+        }
+    }
+-------------------------------------------------------------------------------------------------------------------------------
+
+QUESTION 6) Merge Sorted Array(LeetCode 88)...
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1;
+        int j = n - 1;
+        int k = m + n - 1;
+
+        while(i >= 0 && j >= 0) {
+
+            if(nums1[i] > nums2[j]) {
+                nums1[k] = nums1[i];
+                i--;
+            }
+            else {
+                nums1[k] = nums2[j];
+                j--;
+            }
+
+            k--;
+        }
+
+        while(j >= 0) {
+            nums1[k] = nums2[j];
+            j--;
+            k--;
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+QUESTION 7) Bubble Sort...
+
+class Solution {
+    public void bubbleSort(int[] nums) {
+        int n = nums.length;
+         for(int i = 0; i < n - 1; i++) 
+         {
+            for(int j = i+1; j < n; j++) 
+            {
+                if(nums[i] > nums[j]) 
+                {
+                    nums[i]=nums[i]+nums[j];
+                    nums[j]=nums[i]-nums[j];
+                    nums[i]=nums[i]-nums[j];
+                }
+            }
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+
+
