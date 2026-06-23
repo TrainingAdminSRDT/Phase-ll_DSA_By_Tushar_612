@@ -1,0 +1,85 @@
+#median of sorted arrays
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+
+        int[] merged = new int[m + n];
+
+        int i = 0, j = 0, k = 0;
+
+        while (i < m && j < n) {
+            if (nums1[i] < nums2[j]) {
+                merged[k++] = nums1[i++];
+            } else {
+                merged[k++] = nums2[j++];
+            }
+        }
+
+        while (i < m) {
+            merged[k++] = nums1[i++];
+        }
+
+        while (j < n) {
+            merged[k++] = nums2[j++];
+        }
+
+        int len = merged.length;
+
+        if (len % 2 == 1) {
+            return merged[len / 2];
+        }
+
+        return (merged[len / 2 - 1] + merged[len / 2]) / 2.0;
+    }}
+    ----------------------------------------------------------------------
+    #longest palindrome
+class Solution {
+    public String longestPalindrome(String s) {
+        String res = "";
+
+        for (int i = 0; i < s.length(); i++) {
+            String odd = expand(s, i, i);
+            String even = expand(s, i, i + 1);
+
+            if (odd.length() > res.length()) res = odd;
+            if (even.length() > res.length()) res = even;
+        }
+
+        return res;
+    }
+
+    private String expand(String s, int left, int right) {
+        while (left >= 0 && right < s.length()
+                && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+
+        return s.substring(left + 1, right);
+    }
+}
+---------------------------------------------------------------------
+longest substring without repeating character
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> set = new HashSet<>();
+
+        int left = 0;
+        int maxLen = 0;
+
+        for (int right = 0; right < s.length(); right++) {
+            while (set.contains(s.charAt(right))) {
+                set.remove(s.charAt(left));
+                left++;
+            }
+
+            set.add(s.charAt(right));
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+
+        return maxLen;
+    }
+}
+    

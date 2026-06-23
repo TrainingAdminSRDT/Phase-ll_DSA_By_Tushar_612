@@ -1,0 +1,79 @@
+#probleem 144
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        dfs(root, result);
+        return result;
+    }
+
+    private void dfs(TreeNode node, List<Integer> result) {
+        if (node == null) {
+            return;
+        }
+
+        result.add(node.val);    // Root
+        dfs(node.left, result);  // Left
+        dfs(node.right, result); // Right
+    }
+
+        }
+-------------------------------------------------
+#binary tree level order traversal
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        if (root == null) {
+            return result;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> level = new ArrayList<>();
+
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                level.add(node.val);
+
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+
+            result.add(level);
+        }
+
+        return result;
+    }
+}
+--------------------------------------------------------------------
+#Inoder traversal
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+
+        while (curr != null || !stack.isEmpty()) {
+
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+
+            curr = stack.pop();
+            result.add(curr.val);
+
+            curr = curr.right;
+        }
+
+        return result;
+    }
+}
