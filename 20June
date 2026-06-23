@@ -1,0 +1,41 @@
+## QUES 509 
+
+class Solution {
+    public int fib(int n) {
+      return solve(n);
+    }
+    int solve(int n){
+      if(n==0) return 0;
+        if(n==1) return 1;
+        return fib(n-1)+fib(n-2);
+    }
+}
+___________________________________________________________________________________________________________________________________________________________
+
+## QUES 39
+
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans=new ArrayList<>();
+         helper(candidates,target,0,ans,new ArrayList<>());
+         return ans;
+    }
+    public void helper(int[]arr,int target,int i,List<List<Integer>> ans,List<Integer>ds){
+        if(i==arr.length){
+            if(target==0){
+                 ans.add(new ArrayList<>(ds));
+            }
+            return ;
+
+        }
+        if(arr[i]<=target){
+            ds.add(arr[i]);
+            helper(arr,target-arr[i],i,ans,ds);
+            ds.remove(ds.size()-1);
+
+        }
+        helper(arr,target,i+1,ans,ds);
+
+    }
+}
+______________________________________________________________________________________________________________________________________________________________

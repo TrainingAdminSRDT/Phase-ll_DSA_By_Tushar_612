@@ -1,0 +1,34 @@
+//Palindrome Integer
+class Solution {
+    public boolean isPalindrome(int x) {
+        if (x<0 ) return false;
+        if(x%10==0 && x!=0) return false;
+        int temp=x;
+        int reverse=0;
+        while(temp!=0){
+            int digit=temp%10;
+            reverse=reverse * 10 + digit;
+            temp/=10;
+        }
+        if(x==reverse)
+        return true;
+        return false;
+    }
+}
+// calc steps
+static int steps(int D){
+        if(D-1==0||D-2==0||D-3==0||D-4==0||D-5==0)
+        return 1;
+        int a=steps(D-1);
+        int b=steps(D-2);
+        int c=steps(D-3);
+        int d=steps(D-4);
+        int e=steps(D-5);
+        return 1+Math.min(Math.min(Math.min(a,b),Math.min(c,d)),e);
+}
+
+static String game(int num){
+    if(num%3==0)
+        return "B wins";
+    return "A wins";
+}
