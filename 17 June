@@ -1,0 +1,159 @@
+1. Palindrome Number(LeetCode-9)...
+
+class Solution {
+    public boolean isPalindrome(int x) {
+
+        if(x<0){
+            return false;
+        }
+
+        if(x%10 == 0 && x != 0){
+            return false;
+        }
+
+        int temp = x;
+        int rev = 0;
+        while(temp != 0)
+        {
+            int lastDigit = temp%10;
+            rev = rev * 10 + lastDigit;
+            temp = temp/10;
+        }
+        
+        if(rev == x){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+2. Palindrome String...
+
+import java.util.Scanner;
+public class PalindromeCheck {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String s = sc.nextLine();
+
+        s = s.toLowerCase();
+
+        int left = 0;
+        int right = s.length() - 1;
+
+        boolean isPalindrome = true;
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                isPalindrome = false;
+                break;
+            }
+            left++;
+            right--;
+        }
+
+        if (isPalindrome) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not a Palindrome");
+        }
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+3. Count minimum no. of steps...
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int a[] = {1,2,3,4,5};
+        int steps = 0;
+        int distance;
+        
+        System.out.println("Enter the distance to be covered");
+        distance =sc.nextInt();
+        
+        int rem = distance % 5;
+        if(rem != 0){
+            steps++;
+        }
+        steps = steps + distance/5;
+        System.out.println(steps);
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+4. Find who will win A or B...
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int n;
+        System.out.println("Enter a no.");
+        n = sc.nextInt();
+        
+        if(n%3 == 0){
+            System.out.println("B wins...");
+        }
+        else{
+            System.out.println("A wins...");
+        }
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------
+
+5. Input an array and print it...
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size;
+        System.out.println("Enter the size of the array");
+        size = sc.nextInt();
+        int arr[] = new int[size];
+        System.out.println("enter "+ size + " elements");
+        for(int i=0;i<size;i++)
+        {
+            arr[i] = sc.nextInt();
+        }
+        for(int i=0;i<size;i++)
+        {
+            System.out.print(arr[i]+" ");
+        }
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------
+
+6. Calculate sum and average of an array...
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size;
+        int sum = 0;
+        System.out.println("Enter the size of the array");
+        size = sc.nextInt();
+        int arr[] = new int[size];
+        System.out.println("enter "+ size + " elements");
+        for(int i=0;i<size;i++)
+        {
+            arr[i] = sc.nextInt();
+            sum = sum + arr[i];
+        }
+       System.out.println("Sum is :" + sum);
+       System.out.println("Average is :" + sum/size);
+    }
+}
