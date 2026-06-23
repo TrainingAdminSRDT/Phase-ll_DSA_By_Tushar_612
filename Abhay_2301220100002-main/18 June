@@ -1,0 +1,169 @@
+1.//Largest element in array
+public class LargestNumber {
+    public static void main(String[] args) {
+        int[] arr = {10, 25, 7, 89, 45};
+
+        int max = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        System.out.println("Largest number: " + max);
+    }
+}
+----------------------------------------------------------------------------------------------------------------
+2.// Second largest number in array
+public class SecondLargest {
+    public static void main(String[] args) {
+        int[] arr = {10, 25, 7, 89, 45};
+
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        for (int num : arr) {
+            if (num > largest) {
+                secondLargest = largest;
+                largest = num;
+            } else if (num > secondLargest && num != largest) {
+                secondLargest = num;
+            }
+        }
+
+        System.out.println("Second Largest Number: " + secondLargest);
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------
+3.//check-if-array-is-sorted-and-rotated
+public class SecondLargest {
+    public static void main(String[] args) {
+        int[] arr = {10, 25, 7, 89, 45};
+
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        for (int num : arr) {
+            if (num > largest) {
+                secondLargest = largest;
+                largest = num;
+            } else if (num > secondLargest && num != largest) {
+                secondLargest = num;
+            }
+        }
+
+        System.out.println("Second Largest Number: " + secondLargest);
+    }
+-----------------------------------------------------------------------------------------------------------------
+4.  // 2 sum problem 
+
+mport java.util.HashMap;
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
+
+            map.put(nums[i], i);
+        }
+
+        return new int[] {};
+    }
+}
+        
+-----------------------------------------------------------------------------------------------------------------------------------------   
+
+5. // 2 sum II problem using 2 pointer approach
+
+
+import java.util.*;
+public class sort{
+    public static int[]twosum(int[] nums,int target){
+        int left=0;
+        int right=nums.length-1;
+        while(left<right){
+            int sum=nums[left]+nums[right]; // remember
+            if(sum==target){
+                return new int[]{left,right};// remember new
+            }
+            else if(sum>target){
+                right--;
+            }
+            else{
+                left++;
+            }
+
+        }
+        return new int[]{-1,-1}; // remember
+    }
+    public static void main(String args[]){
+        int nums[]={2,7,9,11};
+        int target=11;
+        int ans[]=twosum(nums,target);
+        System.out.println(ans[0]+" "+ ans[1]);
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+6. // subarray sum equals k
+
+import java.util.HashMap;
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        map.put(0, 1);
+
+        int sum = 0;
+        int count = 0;
+
+        for (int num : nums) {
+            sum += num;
+
+            if (map.containsKey(sum - k)) {
+                count += map.get(sum - k);
+            }
+
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+        }
+
+        return count;
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------
+
+7. // Majority Element(LeetCode 169)...
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        int candidate = 0;
+        int count = 0;
+
+        for(int i=0; i<nums.length; i++)
+        {
+            if(count == 0){
+                candidate = nums[i];
+            }
+
+            if(nums[i] == candidate){
+                count++;
+            }
+            else
+            count--;
+        }
+        return candidate;
+    }
+}
+
+
+
