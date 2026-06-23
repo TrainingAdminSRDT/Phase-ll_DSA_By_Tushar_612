@@ -1,0 +1,108 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        String s = String.valueOf(x); // Convert to String
+        int n = s.length(); // Store the String length to int n
+
+        for (int i=0; i<n/2; i++) {
+            // We check whether the elements at the same distance from
+            // beginning and from ending are same, if not we return false
+            if (s.charAt(i) != s.charAt(n-i-1)) return false;
+        }
+
+        // if no flaws are found we return true
+        return true;
+        
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string str;
+    
+    cout << "Enter a string: ";
+    cin >> str;
+
+    string rev = "";
+
+    for (int i = str.length() - 1; i >= 0; i--) {
+        rev += str[i];
+    }
+
+    if (str == rev)
+        cout << "Palindrome String";
+    else
+        cout << "Not a Palindrome String";
+
+    return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+public class MinimumSteps {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter location A: ");
+        int A = sc.nextInt();
+
+        System.out.print("Enter location B: ");
+        int B = sc.nextInt();
+
+        int steps = Math.abs(B - A);
+
+        System.out.println("Minimum Steps Required = " + steps);
+
+        sc.close();
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[5];
+
+    cout << "Enter 5 elements: ";
+    for(int i = 0; i < 5; i++) {
+        cin >> arr[i];
+    }
+
+    cout << "Array elements are: ";
+    for(int i = 0; i < 5; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[5];
+    int sum = 0;
+
+    cout << "Enter 5 elements: ";
+    for(int i = 0; i < 5; i++) {
+        cin >> arr[i];
+        sum += arr[i];
+    }
+
+    cout << "Sum of elements = " << sum;
+
+    return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
