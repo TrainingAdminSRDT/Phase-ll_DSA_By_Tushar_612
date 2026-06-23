@@ -1,0 +1,103 @@
+#binary search
+class Solution {
+    public int search(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+}
+-----------------------------------------------------------
+#sort colors
+class Solution {
+    public void sortColors(int[] nums) {
+        for(int i=0;i<nums.length;i++){
+          for(int j=i+1;j<nums.length;j++){
+             int temp=0;
+            if(nums[i]>=nums[j]){
+               temp=nums[i];
+               nums[i]=nums[j];
+               nums[j]=temp;
+            }
+          }
+        }
+      
+    }
+
+    --------------------------------------------------------------
+    #search insert position
+    class Solution {
+    public int searchInsert(int[] nums, int target) {
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>=target){
+                return i;
+            }
+        }
+        return nums.length;
+    }
+}
+-----------------------------------------------------------------------
+#missing number
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n=nums.length;
+        int expectedSum=n*(n+1)/2;
+        int actualsum=0;
+
+        for(int num:nums){
+            actualsum+=num;
+        }
+        return expectedSum-actualsum;
+        }
+    }
+    --------------------------------------------------------------------------
+    #merge sorted array
+    class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1;          // last element in nums1
+        int j = n - 1;          // last element in nums2
+        int k = m + n - 1;      // last position in nums1
+
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) {
+                nums1[k] = nums1[i];
+                i--;
+            } else {
+                nums1[k] = nums2[j];
+                j--;
+            }
+            k--;
+        }
+
+        while (j >= 0) {
+            nums1[k] = nums2[j];
+            j--;
+            k--;
+        }
+    }
+}
+---------------------------------------------------------------------------------
+#search in rotated sort array
+class Solution {
+    public int search(int[] nums, int target) {
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==target){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+}
