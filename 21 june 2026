@@ -1,0 +1,84 @@
+............................138 coylistwith Random Pointer.............
+import java.util.*;
+
+class Solution {
+    public Node copyRandomList(Node head) {
+        if (head == null) return null;
+
+        Map<Node, Node> map = new HashMap<>();
+
+        Node curr = head;
+        while (curr != null) {
+            map.put(curr, new Node(curr.val));
+            curr = curr.next;
+        }
+
+        curr = head;
+        while (curr != null) {
+            map.get(curr).next = map.get(curr.next);
+            map.get(curr).random = map.get(curr.random);
+            curr = curr.next;
+        }
+
+        return map.get(head);
+    }
+}
+
+...........................141 linked list cycle detection..................
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if (head == null) return false;
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;        
+            fast = fast.next.next;   
+
+            if (slow == fast) {
+                return true;         
+            }
+        }
+
+        return false; 
+    }
+}
+................................leetcode206 reverse...................................
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode nextNode = curr.next; 
+            curr.next = prev;              
+            prev = curr;                   
+            curr = nextNode;               
+        }
+
+        return prev; 
+    }
+
+.......................................leetcode 237 Delete node.....................................
+class Solution {
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;      
+        node.next = node.next.next;    
+    }
+}
+............................................876 middle of linkedlist.............
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+}

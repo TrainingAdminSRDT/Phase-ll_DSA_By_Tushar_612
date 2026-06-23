@@ -1,0 +1,84 @@
+class Solution {
+    public int reverse(int x) {
+        
+        int rev = 0;
+
+        while (x != 0) {
+            int digit = x % 10;
+            x /= 10;
+
+            if (rev > Integer.MAX_VALUE / 10 || 
+                (rev == Integer.MAX_VALUE / 10 && digit > 7)) {
+                return 0;
+            }
+
+            if (rev < Integer.MIN_VALUE / 10 || 
+                (rev == Integer.MIN_VALUE / 10 && digit < -8)) {
+                return 0;
+            }
+.................................sum....................
+import java.util.Scanner;
+
+public class SumArray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter size of array: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        int sum = 0;
+
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt()
+            sum += arr[i];
+        }
+................................star Pattern................
+public class StarPattern {
+    public static void main(String[] args) {
+        for(int i = 1; i <= 5; i++) {
+            for(int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+}
+................................pattern.....................
+public class Pattern {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 4; i++) {
+            for (int j = 1; j <= 4; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+}
+..........................Student GRADE...................
+import java.util.Scanner;
+
+public class StudentGrade {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter marks: ");
+        int marks = sc.nextInt();
+
+        if (marks >= 90) {
+            System.out.println("Grade A");
+        } else if (marks >= 80) {
+            System.out.println("Grade B");
+        } else if (marks >= 70) {
+            System.out.println("Grade C");
+        } else if (marks >= 60) {
+            System.out.println("Grade D");
+        } else {
+            System.out.println("Grade F");
+        }
+
+        sc.close();
+    }
+}
+
