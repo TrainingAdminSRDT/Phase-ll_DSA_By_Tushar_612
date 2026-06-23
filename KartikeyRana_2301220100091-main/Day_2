@@ -1,0 +1,40 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x<0){
+            return false;
+        }
+        else{
+            int temp = x;
+            int num = 0;
+            int rem = 0;
+            while(temp>0){
+                rem = temp%10;
+                num = num *10 + rem;
+                temp = temp/10;
+            }
+            if(num == x){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+----------------------------------------------------------
+
+
+class MinimumSteps {
+    public int minSteps(int distance, int[] steps) {
+        int maxStep = 0;
+        for (int s : steps) {
+            if (s > maxStep)
+                maxStep = s;
+        }
+        int count = distance / maxStep;   // number of max steps
+        int remainder = distance % maxStep;
+        if (remainder > 0) {
+            count++;
+        }
+
+        return count;
+    }
