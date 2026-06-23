@@ -1,0 +1,90 @@
+## QUES 1
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x<0 || x%10==0&& x!=0) return false;
+        int rev=0;
+        for(int n=x;n>0;n=n/10){
+            rev=rev*10+(n%10);
+        }
+        return (rev==x);
+    }
+}
+_______________________________________________________________________________________________________________________________________________________________
+## QUES 2
+
+public class programs{
+    public static void main(String[] args) {
+        String str = "madam";
+
+        int left = 0, right = str.length() - 1;
+        boolean isPalindrome = true;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                isPalindrome = false;
+                break;
+            }
+            left++;
+            right--;
+        }
+
+        System.out.println(isPalindrome ? "Palindrome" : "Not Palindrome");
+    }
+}
+_____________________________________________________________________________________________________________________________________________________________
+## QUES 3
+
+public class programs{
+    public static howManySteps(String[] args) {
+       int d,steps=0;
+       steps=d/5;
+       if(d%5==0) System.out.println(steps);
+       else step+1;
+    }
+}
+_______________________________________________________________________________________________________________________________________________________________
+## QUES 4
+
+public class programs{
+    public static void whoWins(int num) {
+       if(num % 3==0) System.out.println("b wins");
+            else System.out.println("a wins");
+        }
+
+    public static void main(String[] args) {
+        int num=3;
+        whoWins(num);
+    }
+}
+_______________________________________________________________________________________________________________________________________________________________
+
+## QUES 5    SUM AND AVG OF ARRAY
+
+public class programs{
+    public static void printSum(int[] num) {
+        int sum=0;
+        for (int i = 0; i < num.length; i++) {
+            sum=sum+num[i];
+
+        }
+        System.out.println(sum);
+    }
+_______________________________________________________________________________________________________________________________________________________________
+    public static void Avg(int []num) {
+        int sum=0,avg=0;
+        for (int i = 0; i < num.length; i++) {
+            sum=sum+num[i];
+        }
+        avg=sum/num.length;
+        System.out.println(avg);
+    }
+
+    public static void main(String[] args) {
+        int[] arr={1,2,3,4,5};
+        printSum(arr);
+        Avg(arr);
+    }
+}
+
+
